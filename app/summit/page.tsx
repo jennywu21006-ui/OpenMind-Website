@@ -1,105 +1,112 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-// 全部嘉宾数据源，已整理7位嘉宾：赵嬛嬛、Monica Wang、王麒源、胡應洲、孟岩、邢翼、殷梓健
+// All speaker data, 7 speakers: Zhao Huanhuan, Monica Wang, Wang Qiyuan, Hu Yingzhou, Meng Yan, Xing Yi, Yin Zijian
 const speakerList = [
   {
-    type: "演讲嘉宾",
-    name: "赵嬛嬛",
-    titleLine1: "AI机器人行业转型咨询教练",
-    titleLine2: "阿里巴巴达摩院AI高级训练师",
-    titleLine3: "上海机器人产业技术研究院产业合作专家",
-    speechTopic: "具身智能与蓝领劳动力：AI 机器人如何重塑未来工作",
-    speechPoints: [
-      "人形机器人在制造、物流、零售等行业的最新商业化落地案例",
-      "AI 机器人如何走出虚拟世界，开始承担高重复性、高风险体力劳动",
-      "具身智能技术对产业升级及劳动结构的影响",
-      "企业如何应对 AI 机器人时代的人才转型与组织变革"
+    id: "zhaohuanhuan",
+    category: "Speaker",
+    name: "Zhao Huanhuan",
+    titleLine1: "AI Robotics Industry Transformation Consultant Coach",
+    titleLine2: "Senior AI Trainer, Alibaba DAMO Academy",
+    titleLine3: "Industry Cooperation Expert, Shanghai Robotics Industry Technology Research Institute",
+    speechTopic: "Embodied Intelligence & Blue-Collar Workforce: How AI Robots Reshape the Future of Labor",
+    speechHighlights: [
+      "Latest commercial deployment cases of humanoid robots in manufacturing, logistics and retail",
+      "How AI robots move beyond virtual environments to take over repetitive, high-risk manual labor",
+      "Impacts of embodied intelligence on industrial upgrading and labor market restructuring",
+      "Strategies for enterprises to manage talent transition and organizational reform in the AI robotics era"
     ],
-    bio: "香港大学人工智能硕士，长期致力于为传统行业人才设计 AI 机器人产业转型路径，拥有16年境内外跨行业管理实践经验；持续推动人工智能、机器人技术与产业应用深度融合，在 AI 人才培养、产业转型及具身智能商业化落地方面具有丰富的实践经验。",
+    bio: "Master of Artificial Intelligence, The University of Hong Kong. She has 16 years of cross-industry management experience across domestic and international markets, dedicated to designing AI robotics transformation pathways for traditional industry professionals. She consistently drives deep integration of AI, robotics technology and industrial applications, with extensive practical experience in AI talent development, industrial transformation and commercialization of embodied intelligence.",
     avatar: "/avatar/zhaohuanhuan.png"
   },
   {
-    type: "主持人",
+    id: "monicawang",
+    category: "Host",
     name: "Monica Wang",
-    titleLine1: "多家头部企业出海顾问",
-    titleLine2: "AGI Villa 发起人",
+    titleLine1: "Overseas Expansion Advisor for Leading Enterprises",
+    titleLine2: "Founder of AGI Villa",
     titleLine3: "",
     speechTopic: "",
-    speechPoints: [],
-    bio: "多家头部企业出海顾问，中英文账号全网上亿播放，每周「出海×AI×创业」直播；AGI Villa 发起人（3,000+ AI 创业者）；BridgingChina发起人（20W followers）；记者出身，15年间走访60国，科技出海的深度观察者和连接者；连续创业者，曾任AI编程、青少年教育、Web3、本地生活、社交电商独角兽CEO/CMO，创业项目累计融资超15亿元（红杉/线性/君联/创新工场等）；三宝妈，马拉松跑者。",
+    speechHighlights: [],
+    bio: "Global expansion advisor for multiple top corporations, with hundreds of millions of cross-lingual video views and weekly live streams covering global expansion, AI and entrepreneurship. Founder of AGI Villa (3,000+ AI entrepreneurs) and BridgingChina (200K followers). A former journalist who has visited 60 countries over 15 years, she is an in-depth observer and connector of tech globalisation. Serial entrepreneur, former CEO/CMO of unicorns in AI coding, youth education, Web3, local life services and social e-commerce; her startups have raised over 1.5 billion RMB from Sequoia China, Linear Capital, Junlian Capital, Innovation Works and other institutions. Mother of three, marathon runner.",
     avatar: "/avatar/monicawang.png"
   },
   {
-    type: "演讲嘉宾",
-    name: "王麒源",
-    titleLine1: "普华永道",
-    titleLine2: "合伙人",
+    id: "wangqiyuan",
+    category: "Speaker",
+    name: "Wang Qiyuan",
+    titleLine1: "PwC",
+    titleLine2: "Partner",
     titleLine3: "",
-    speechTopic: "AI驱动企业变革：组织重塑、实践创新与转型经验",
-    speechPoints: [
-      "AI Agent 如何重塑企业组织与未来工作方式",
-      "普华永道企业 AI 转型实践",
-      "企业 AI 落地案例分享",
-      "AI 组织转型过程中面临的挑战与经验总结"
+    speechTopic: "AI-Driven Corporate Transformation: Organisational Restructuring, Practical Innovation & Transformation Insights",
+    speechHighlights: [
+      "How AI Agents reshape corporate organisations and future work models",
+      "PwC’s real-world enterprise AI transformation practices",
+      "Case studies of AI implementation within corporations",
+      "Challenges and takeaways from AI-powered organisational transformation"
     ],
-    bio: "普华永道中国税务及商务咨询部合伙人，拥有17年以上税务及商务咨询经验，长期服务于中国企业全球化发展及跨国企业在华经营。曾参与复星、阿里巴巴、小米、红杉等知名企业及机构的跨境税务、并购重组及企业战略咨询项目，在企业数字化转型、跨境投资及 AI 时代组织变革方面具有丰富实践经验。",
+    bio: "Partner, Tax & Business Consulting, PwC China, with more than 17 years of tax and business consulting experience focusing on Chinese enterprises’ global expansion and multinationals’ operations in China. He has led cross-border tax, M&A restructuring and corporate strategy consulting projects for well-known organisations including Fosun, Alibaba, Xiaomi and Sequoia Capital. He brings profound hands-on experience in corporate digital transformation, cross-border investment and organisational restructuring in the AI era.",
     avatar: "/avatar/wangqiyuan.png"
   },
   {
-    type: "演讲嘉宾",
-    name: "胡應洲",
-    titleLine1: "友吉智汇",
-    titleLine2: "创始人",
+    id: "huyingzhou",
+    category: "Speaker",
+    name: "Hu Yingzhou",
+    titleLine1: "Youji Zhihui",
+    titleLine2: "Founder",
     titleLine3: "",
-    speechTopic: "从“数字员工”到“物理硅基”：具身智能的商业闭环、资本逻辑与全球化突围",
-    speechPoints: [
-      "Physical Agent（具身智能）的产业演进",
-      "具身智能在制造、物流、高危场景的商业化落地",
-      "投资机构如何判断具身智能企业价值",
-      "企业如何通过标准化实现全球化与抱团出海"
+    speechTopic: "From Digital Employees to Physical Silicon Entities: Commercial Loops, Capital Logic & Global Breakthrough of Embodied Intelligence",
+    speechHighlights: [
+      "Industrial evolution of Physical Agents (embodied intelligence)",
+      "Commercial deployment of embodied intelligence in manufacturing, logistics and high-risk scenarios",
+      "How investment institutions evaluate embodied intelligence startups",
+      "Standardisation strategies for global expansion and collaborative overseas market entry"
     ],
-    bio: "上海财经大学硕士，长期专注于具身智能产业生态建设、商业化落地及产业投融资。深度连接机器人整机企业、核心零部件企业及AI算法企业，累计参与50余个真实商业项目与资本对接实践，提出“具身智能一页纸尽调模型”，并打造赋能企业国际化发展的S&D智能匹配引擎，推动中国具身智能产业链标准化出海。",
+    bio: "Master’s degree from Shanghai University of Finance and Economics. He specialises in building industrial ecosystems for embodied intelligence, commercialisation and industrial investment & financing. He maintains deep connections with robot OEMs, core component suppliers and AI algorithm firms, having participated in over 50 commercial projects and capital matching initiatives. He created the “One-Page Due Diligence Model for Embodied Intelligence” and built the S&D Intelligent Matching Engine to empower the globalisation of Chinese embodied intelligence industrial chains through standardisation.",
     avatar: "/avatar/huyingzhou.png"
   },
   {
-    type: "演讲嘉宾",
-    name: "孟岩",
-    titleLine1: "科大讯飞",
-    titleLine2: "商务拓展经理",
-    titleLine3: "政企AI落地资深技术顾问",
-    speechTopic: "大模型驱动的企业级应用场景与落地案例",
-    speechPoints: [
-      "大模型底座与核心能力矩阵",
-      "企业级智能应用与提效场景"
+    id: "mengyan",
+    category: "Speaker",
+    name: "Meng Yan",
+    titleLine1: "iFLYTEK",
+    titleLine2: "Business Development Manager",
+    titleLine3: "Senior Technical Consultant for Government & Enterprise AI Implementation",
+    speechTopic: "Enterprise-Grade Application Scenarios & Deployment Cases Powered by Large Language Models",
+    speechHighlights: [
+      "Core capability matrix and underlying architecture of large language models",
+      "Enterprise intelligent applications and efficiency-boosting use cases"
     ],
-    bio: "深耕 AI 技术商业化落地，曾任讯飞开放平台技术讲师，精通星火大模型、语音 AI 企业集成方案，服务美图、滴滴、浪潮等头部企业完成 AI 项目落地。覆盖多行业政企数字化场景，掌握从技术对接、方案设计到商务落地全流程实战经验。聚焦大模型产业商业化，专注输出适配实体企业的轻量化、高价值 AI 落地解决方案。",
+    bio: "Specialised in commercial deployment of AI technology. Former technical lecturer for iFLYTEK Open Platform, proficient in Spark large model and voice AI enterprise integration solutions. He has delivered AI project rollouts for top enterprises including Meitu, Didi and Inspur, covering digital transformation scenarios across government and private industries. He possesses end-to-end practical expertise spanning technical integration, solution design and business delivery. Focused on large model industrial commercialisation, he delivers lightweight, high-value AI implementation solutions tailored for physical enterprises.",
     avatar: "/avatar/mengyan.png"
   },
   {
-    type: "演讲嘉宾",
-    name: "邢翼",
-    titleLine1: "安思派人工智能技术有限公司首席AI技术官",
-    titleLine2: "Ripple 创始人",
+    id: "xingyi",
+    category: "Speaker",
+    name: "Xing Yi",
+    titleLine1: "Chief AI Technology Officer, AnsiPai AI Technology Co., Ltd.",
+    titleLine2: "Founder of Ripple",
     titleLine3: "",
-    speechTopic: "从“预测未来”到“验证决策”： Ripple 如何构建企业决策预演与证据闭环",
-    speechPoints: [
-      "企业需要的不是更会回答的智能体，而是可验证、可复盘的决策系统",
-      "Ripple通过多智能体模拟不同情境，预演方案、风险与失败边界，连接模拟与现实执行，分析偏差，形成可追溯的决策闭环。",
-      "推动智能体走向可验证、可授权、可回退和持续学习"
+    speechTopic: "From Forecasting the Future to Verifying Decisions: How Ripple Builds a Closed Loop for Corporate Decision Simulation & Evidence Tracking",
+    speechHighlights: [
+      "Enterprises require verifiable, reviewable decision systems rather than purely responsive intelligent agents",
+      "Ripple simulates diverse scenarios via multi-agent systems to predict plans, risks and failure boundaries; it links simulation with real-world execution, analyzes deviations and forms a traceable decision-making closed loop",
+      "Pushing intelligent agents toward verifiability, authorisation, rollback functionality and continuous iterative learning"
     ],
-    bio: "专注多智能体模拟、复杂适应系统及企业决策智能研究与产品设计；主导 Ripple 整体设计，在虚拟环境中预演市场、组织与社会主体的互动；推动大模型、多智能体与强化学习走向具备证据边界、现实反馈和治理机制的企业决策系统。",
+    bio: "His research covers multi-agent simulation, complex adaptive systems and product design for corporate decision intelligence. He leads the overall architecture of Ripple, simulating interactions between market participants, organisations and social actors within virtual environments. He advances large models, multi-agent systems and reinforcement learning toward enterprise decision systems with defined evidence boundaries, real-world feedback loops and governance frameworks.",
     avatar: "/avatar/xingyi.png"
   },
   {
-    type: "圆桌嘉宾",
-    name: "殷梓健",
-    titleLine1: "数花智算",
-    titleLine2: "合伙人 | 算法专家",
+    id: "yinzijian",
+    category: "Panel Guest",
+    name: "Yin Zijian",
+    titleLine1: "Shuhua Intelligent Computing",
+    titleLine2: "Partner | Algorithm Expert",
     titleLine3: "",
     speechTopic: "",
-    speechPoints: [],
-    bio: "数花智算合伙人、核心算法专家，原百度智能云算法工程师、网易伏羲实验室AI产品经理。2026 深圳科创学院冬令营全国冠军(1/1800)，李泽湘教授科创体系孵化。甘肃省人形机器人中心算法顾问，兼顾工业智能、企业数字化赛道，具备算法研发、AI 产品设计、商业化落地。主导数花智算大模型数据决策产品线研发，聚焦中小企业经营、产业数字化场景，输出低成本、高落地性的 AI 数据智能解决方案。",
+    speechHighlights: [],
+    bio: "Partner and core algorithm expert at Shuhua Intelligent Computing. Former Algorithm Engineer at Baidu Intelligent Cloud and AI Product Manager at NetEase Fuxi Lab. National Champion of the 2026 Shenzhen Institute of Advanced Technology Winter Innovation Competition (1 out of 1,800 participants), incubated under Professor Li Zexiang’s innovation system. Algorithm consultant for Gansu Humanoid Robot Center. His expertise spans industrial intelligence and corporate digitalisation, combining algorithm R&D, AI product design and commercial delivery. He leads R&D for Shuhua Intelligent Computing’s large model data decision product line, focusing on low-cost, highly deployable AI data intelligence solutions for small and medium-sized enterprises and industrial digital transformation scenarios.",
     avatar: "/avatar/yinzijian.png"
   }
 ]
@@ -107,7 +114,7 @@ const speakerList = [
 export default function SummitPage() {
   return (
     <>
-      {/* Hero头部区域 */}
+      {/* Hero Header Section */}
       <section className="pt-32 pb-20 bg-white relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-10"
@@ -140,16 +147,11 @@ export default function SummitPage() {
         </div>
       </section>
 
-      {/* 嘉宾列表主区域 */}
+      {/* Main Speaker List Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <span className="inline-block text-[#2563eb] text-xs font-semibold uppercase tracking-widest mb-3">
-              About Our Speakers
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-5">
-              Industry Experts with Real-World AI Experience
-            </h2>
+            {/* 已删除圈出的 ABOUT OUR SPEAKERS、大标题 Industry Experts with Real-World AI Experience */}
             <p className="text-gray-700 leading-relaxed">
               Every speaker on this stage has led tangible AI workforce transformation within large organizations.
               No theoretical lectures — only actionable case studies, leadership insights, and frameworks you can apply
@@ -157,10 +159,10 @@ export default function SummitPage() {
             </p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {speakerList.map((speaker, idx) => (
-              <div key={idx} className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-shadow">
+            {speakerList.map((speaker) => (
+              <div key={speaker.id} className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-shadow">
                 <div className="flex flex-col md:flex-row gap-6">
-                  {/* 头像区域 修复next/image兼容，加relative定位 */}
+                  {/* Avatar Container - Fixed Next.js Image layout */}
                   <div className="w-44 h-44 shrink-0 mx-auto md:mx-0 rounded-full overflow-hidden border-4 border-blue-100 relative">
                     <Image
                       src={speaker.avatar}
@@ -170,7 +172,7 @@ export default function SummitPage() {
                     />
                   </div>
                   <div className="flex-1">
-                    <span className="text-[#2563eb] text-sm font-medium">{speaker.type}</span>
+                    <span className="text-[#2563eb] text-sm font-medium">{speaker.category}</span>
                     <h3 className="text-3xl font-bold mt-1 text-gray-900">{speaker.name}</h3>
                     <div className="my-3 bg-[#0f1740] text-white px-4 py-3 rounded-md inline-block">
                       <p>{speaker.titleLine1}</p>
@@ -178,14 +180,18 @@ export default function SummitPage() {
                       {speaker.titleLine3 && <p className="mt-1">{speaker.titleLine3}</p>}
                     </div>
 
-                    {speaker.speechTopic && <>
-                      <h4 className="text-lg font-semibold text-[#2563eb] mt-2">演讲主题：{speaker.speechTopic}</h4>
-                      <ul className="list-disc pl-5 mt-2 space-y-1 text-gray-700 text-sm">
-                        {speaker.speechPoints.map((point,pIdx)=><li key={pIdx}>{point}</li>)}
-                      </ul>
-                    </>}
+                    {speaker.speechTopic && (
+                      <>
+                        <h4 className="text-lg font-semibold text-[#2563eb] mt-2">Keynote Topic: {speaker.speechTopic}</h4>
+                        <ul className="list-disc pl-5 mt-2 space-y-1 text-gray-700 text-sm">
+                          {speaker.speechHighlights.map((point, pIdx) => (
+                            <li key={pIdx}>{point}</li>
+                          ))}
+                        </ul>
+                      </>
+                    )}
 
-                    <h4 className="text-lg font-semibold mt-4 text-gray-800">嘉宾简介</h4>
+                    <h4 className="text-lg font-semibold mt-4 text-gray-800">Speaker Bio</h4>
                     <p className="text-sm text-gray-600 mt-1 leading-relaxed">{speaker.bio}</p>
                   </div>
                 </div>
