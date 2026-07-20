@@ -374,7 +374,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 演讲嘉宾头部 —— 已删除圈出副标题文字 */}
+      {/* 演讲嘉宾头部 —— 已删除副标题 */}
       <section id="speakers" className="pt-24 pb-20 bg-white relative overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
@@ -384,7 +384,6 @@ export default function HomePage() {
             <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 leading-tight mb-5">
               Our Conference Speakers
             </h2>
-            {/* 已删除：<p className="text-gray-700 text-xl font-light leading-relaxed mb-8">Global HR & AI Transformation Leaders Shaping the Future of Work</p> */}
             <div className="flex flex-wrap gap-4">
               <button
                 onClick={() => scrollToTarget('agenda')}
@@ -397,7 +396,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 嘉宾卡片列表 */}
+      {/* 嘉宾卡片列表：核心改动 Speaker Bio → Guest Introduction */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -433,7 +432,8 @@ export default function HomePage() {
                       </>
                     )}
 
-                    <h4 className="text-lg font-semibold mt-4 text-gray-800">Speaker Bio</h4>
+                    {/* 此处完成文字替换 */}
+                    <h4 className="text-lg font-semibold mt-4 text-gray-800">Guest Introduction</h4>
                     <p className="text-sm text-gray-600 mt-1 leading-relaxed">{speaker.bio}</p>
                   </div>
                 </div>
@@ -443,13 +443,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 议程头部 —— 长标题替换为 Agenda */}
+      {/* 议程头部：标题已改为Agenda */}
       <section id="agenda" className="pt-24 pb-16 bg-white relative overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <span className="inline-block text-[#2563eb] text-xs font-semibold uppercase tracking-widest mb-4">
             PROGRAMME
           </span>
-          {/* 原标题AI-Driven Workforce Transformation & Restructuring 替换为 Agenda */}
           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
             Agenda
           </h2>
@@ -518,11 +517,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 唯一页脚，无重复底部区块 */}
+      {/* 独立页脚，layout已移除全局Footer，仅此处渲染 */}
       <footer className="bg-gray-50 pt-12 pb-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* 位置1：联系信息 + 新增两行LinkedIn */}
+            {/* 位置1：联系信息 + LinkedIn */}
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <div className="flex">
@@ -542,7 +541,6 @@ export default function HomePage() {
                 <p>📞 +86 13817550309</p>
                 <p>📍 Shanghai, China</p>
               </div>
-              {/* 新增两行LinkedIn */}
               <div className="space-y-2 text-sm break-all">
                 <a target="_blank" href="https://www.linkedin.com/in/jenny-wu-b00299360/" className="text-blue-600 hover:underline block">
                   Jenny Wu's Linkedin: https://www.linkedin.com/in/jenny-wu-b00299360/
