@@ -43,6 +43,9 @@
   }
 }
 
+/* 单页平滑滚动核心配置 */
 html {
   scroll-behavior: smooth;
+  /* 抵消顶部固定导航栏高度（桌面导航高度20，对应80px偏移，防止区块顶部被导航遮挡） */
+  scroll-padding-top: 80px;
 }

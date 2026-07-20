@@ -1,7 +1,7 @@
-import Link from 'next/link';
+'use client';
 import Image from 'next/image';
 
-// All speaker data, 7 speakers: Zhao Huanhuan, Monica Wang, Wang Qiyuan, Hu Yingzhou, Meng Yan, Xing Yi, Yin Zijian
+// ========== 1. 嘉宾数据源（完整7人） ==========
 const speakerList = [
   {
     id: "zhaohuanhuan",
@@ -111,63 +111,212 @@ const speakerList = [
   }
 ]
 
-export default function SummitPage() {
+// ========== 2. 完整议程数据源（全部内容已转为英文） ==========
+const days = [
+  {
+    label: 'Agenda',
+    theme: 'AI-Driven Workforce Transformation & Restructuring · 13:30–17:30',
+    sessions: [
+      {
+        time: '13:30',
+        type: 'Opening',
+        title: 'Opening Remarks & Context Introduction',
+        speaker: 'Topic: Standing at the Crossroads of Workforce Transformation · 13:30 - 13:40 (10 minutes)'
+      },
+      {
+        time: '13:40',
+        type: 'Keynote',
+        title: 'Keynote Session 1: Technology Frontier & Job Restructuring',
+        speaker: 'Background: The widespread adoption of AI Agents in enterprise workflows, alongside automation for white-collar work including legal, financial, copywriting and basic programming tasks. Focus: Analyze the inflection point where AI evolves from human assistance to fully independent end-to-end task execution. · 13:40 - 14:10 (30 minutes)'
+      },
+      {
+        time: '14:10',
+        type: 'Keynote',
+        title: 'Keynote Session 2: Embodied Intelligence & Blue-Collar Workforce',
+        speaker: 'Background: Latest commercial rollout of humanoid robots across manufacturing, logistics and retail industries. Focus: How AI breaks out of virtual environments to replace repetitive, high-risk manual labor at scale. · 14:10 - 14:40 (30 minutes)'
+      },
+      {
+        time: '14:40',
+        type: 'Panel',
+        title: 'Industry Roundtable: Cost Efficiency Improvement & Talent Pain Points in Enterprise Transformation',
+        speaker: 'Discussion Topics: How enterprises balance short-term staffing adjustment costs and long-term productivity gains after AI adoption; new required workforce competencies such as prompt engineering and AI compliance auditing. Expected guests: HR leaders from leading tech firms, CIOs from traditional manufacturing/finance sectors, AI startup CEOs and management consultants. · 14:40 - 15:30 (50 minutes)'
+      },
+      {
+        time: '15:30',
+        type: 'Break',
+        title: 'Networking Break & Casual Discussion',
+        speaker: 'Event Highlight: Dedicated AI tool demo zone for attendees to test cutting-edge workflow solutions during break time. · 15:30 - 15:55 (25 minutes)'
+      },
+      {
+        time: '15:55',
+        type: 'Roundtable',
+        title: 'Cross-Industry Discussion: Replacement or Coexistence? Redefining Human Work Value',
+        speaker: 'Discussion Topics: As technical work like coding and spreadsheet management gets automated by AI, whether human competitive advantage will shift to soft skills including creativity, emotional intelligence and ethical decision-making; approaches to mitigate structural unemployment caused by technological progress. Expected guests: economists, AI ethics researchers, sci-fi authors and technology media practitioners. · 15:55 - 16:45 (50 minutes)'
+      },
+      {
+        time: '16:45',
+        type: 'Workshop',
+        title: 'Interactive Workshop: 2030 Workforce Outlook Survey',
+        speaker: 'Format: Live audience polls and anonymous comments about job roles resilient to AI automation, followed by real-time expert commentary. · 16:45 - 17:15 (30 minutes)'
+      },
+      {
+        time: '17:15',
+        type: 'Closing',
+        title: 'Closing Speech & Key Takeaway Summary',
+        speaker: 'Topic: Embrace Industrial Shifts & Upgrade Personal Skill Sets — Actionable Guidance for Future Professionals · 17:15 - 17:30 (15 minutes)'
+      }
+    ]
+  }
+];
+
+const typeColors: Record<string, string> = {
+  '主旨演讲': 'bg-blue-50 text-blue-700 border-blue-200',
+  '产业圆桌': 'bg-purple-50 text-purple-700 border-purple-200',
+  '跨界思辨': 'bg-cyan-50 text-cyan-700 border-cyan-200',
+  '互动工坊': 'bg-green-50 text-green-700 border-green-200',
+  '开幕': 'bg-gray-50 text-gray-700 border-gray-200',
+  '茶歇': 'bg-gray-50 text-gray-600 border-gray-200',
+  '闭幕': 'bg-gray-50 text-gray-700 border-gray-200',
+  Keynote: 'bg-blue-50 text-blue-700 border-blue-200',
+  Panel: 'bg-purple-50 text-purple-700 border-purple-200',
+  Workshop: 'bg-green-50 text-green-700 border-green-200',
+  Session: 'bg-gray-100 text-gray-700 border-gray-200',
+  'Case Study': 'bg-amber-50 text-amber-700 border-amber-200',
+  Roundtable: 'bg-cyan-50 text-cyan-700 border-cyan-200',
+  Registration: 'bg-gray-50 text-gray-600 border-gray-200',
+  Break: 'bg-gray-50 text-gray-600 border-gray-200',
+  Opening: 'bg-gray-50 text-gray-700 border-gray-200',
+  Close: 'bg-gray-50 text-gray-600 border-gray-200',
+};
+
+export default function HomePage() {
+  const scrollToTarget = (id: string) => {
+    const targetEl = document.getElementById(id);
+    if (!targetEl) return;
+    const elRect = targetEl.getBoundingClientRect();
+    window.scrollTo({
+      top: window.scrollY + elRect.top - 80,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <>
-      {/* Hero Header Section */}
-      <section className="pt-32 pb-20 bg-white relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `url('https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1600')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <span className="inline-block text-[#2563eb] text-xs font-semibold uppercase tracking-widest mb-4">
-              OpenMind 2026
-            </span>
-            <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 leading-tight mb-5">
-              Our Conference Speakers
-            </h1>
-            <p className="text-gray-700 text-xl font-light leading-relaxed mb-8">
-              Global HR & AI Transformation Leaders Shaping the Future of Work
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="/agenda"
-                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-gray-300 text-gray-900 font-medium rounded hover:border-[#2563eb] hover:text-[#2563eb] transition-colors"
-              >
-                View Full Agenda
-              </Link>
+      {/* 首页头部区域（已移除底部黑色隔断div） */}
+      <section id="home" className="relative overflow-hidden">
+        {/* 上半深色标题背景区 */}
+        <div className="bg-[#0f172a] relative">
+          <div
+            className="absolute inset-0 opacity-20"
+            style={{
+              backgroundImage: `url('https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1600')`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          />
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-20">
+            <div className="max-w-3xl bg-black/60 backdrop-blur-sm p-6 sm:p-8 rounded-xl">
+              <span className="inline-block bg-blue-600/20 text-[#60a5fa] text-xs font-semibold uppercase tracking-widest mb-4 px-3 py-1 rounded-full">
+                FORUM PLANNING UNDERWAY FOR 2026
+              </span>
+              <h1 className="text-5xl sm:text-6xl font-bold text-white leading-tight mb-5">
+                OpenMind AI Workforce <span className="text-[#60a5fa]">Transformation</span> Forum 2026
+              </h1>
+              <p className="text-gray-300 text-xl font-light leading-relaxed mb-4">
+                How AI Agents Are Reshaping Organizations, Talent and Leadership
+              </p>
+              <p className="text-gray-400 mb-6">
+                A focused half-day forum for business and HR leaders navigating the AI-driven transformation of work.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 text-gray-200 text-sm mb-7">
+                <div className="flex items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+                  Friday, July 31, 2026
+                </div>
+                <div className="flex items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                  Shanghai, China
+                </div>
+              </div>
+              <p className="text-gray-400 mt-3 text-sm mb-8">
+                50 Founders, CEOs, CXOs, HR leaders, AI leaders, digital transformation leaders, innovation and business leaders
+              </p>
+
+              <div className="flex gap-4 flex-wrap">
+                <button
+                  onClick={() => scrollToTarget('speakers')}
+                  className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors"
+                >
+                  View Guest Speakers
+                </button>
+                <button
+                  onClick={() => scrollToTarget('agenda')}
+                  className="px-6 py-3 border border-white text-white hover:bg-white hover:text-slate-900 rounded-md transition-colors"
+                >
+                  Check Full Agenda
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 中间纯白正文区域 */}
+        <div className="bg-white py-16 sm:py-24">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="space-y-5 text-gray-700 text-base leading-7">
+              <p>
+                As generative AI, embodied robotics and autonomous workflow tools get widely adopted across industries, enterprises are facing unprecedented adjustments to organizational structure, job responsibilities and talent development systems. Many management teams are struggling to answer core practical questions: which roles will be automated, what new competencies employees need, and how HR strategy should evolve to match technological progress.
+              </p>
+              <p>
+                This closed-door half-day forum gathers senior practitioners from consulting firms, leading AI startups, manufacturing enterprises and research institutions. Instead of abstract theoretical sharing, all sessions focus on real-world implementation cases, measurable transformation outcomes and actionable operational frameworks that attendees can introduce inside their own companies directly.
+              </p>
+              <p>
+                Participants will obtain first-hand industry insights, build connections with peer decision-makers, and shape their own roadmap for workforce adaptation in the AI era. We intentionally limit total attendance to 50 seats to guarantee high-quality discussion, one-on-one networking and deep exchange between speakers and guests.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Main Speaker List Section */}
+      {/* 区块2：演讲嘉宾头部 #speakers */}
+      <section id="speakers" className="pt-24 pb-20 bg-white relative overflow-hidden">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <span className="inline-block text-[#2563eb] text-xs font-semibold uppercase tracking-widest mb-4">
+              OpenMind 2026
+            </span>
+            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 leading-tight mb-5">
+              Our Conference Speakers
+            </h2>
+            <p className="text-gray-700 text-xl font-light leading-relaxed mb-8">
+              Global HR & AI Transformation Leaders Shaping the Future of Work
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <button
+                onClick={() => scrollToTarget('agenda')}
+                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-gray-300 text-gray-900 font-medium rounded hover:border-[#2563eb] hover:text-[#2563eb] transition-colors bg-transparent"
+              >
+                View Full Agenda
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 嘉宾卡片列表区域：已删除红圈介绍文字，Image保留unoptimized适配本地头像 */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            {/* 已删除圈出的 ABOUT OUR SPEAKERS、大标题 Industry Experts with Real-World AI Experience */}
-            <p className="text-gray-700 leading-relaxed">
-              Every speaker on this stage has led tangible AI workforce transformation within large organizations.
-              No theoretical lectures — only actionable case studies, leadership insights, and frameworks you can apply
-              to your own talent, HR and organizational strategy.
-            </p>
-          </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {speakerList.map((speaker) => (
               <div key={speaker.id} className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-shadow">
                 <div className="flex flex-col md:flex-row gap-6">
-                  {/* Avatar Container - Fixed Next.js Image layout */}
                   <div className="w-44 h-44 shrink-0 mx-auto md:mx-0 rounded-full overflow-hidden border-4 border-blue-100 relative">
                     <Image
                       src={speaker.avatar}
                       alt={speaker.name}
                       fill
+                      unoptimized
                       className="object-cover"
                     />
                   </div>
@@ -198,6 +347,80 @@ export default function SummitPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* 区块3：议程头部 #agenda，标题、说明全部英文 */}
+      <section id="agenda" className="pt-24 pb-16 bg-white relative overflow-hidden">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <span className="inline-block text-[#2563eb] text-xs font-semibold uppercase tracking-widest mb-4">
+            PROGRAMME
+          </span>
+          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+            AI-Driven Workforce Transformation & Restructuring
+          </h2>
+          <p className="text-gray-700 max-w-2xl text-lg font-light">
+            13:30–17:30 · Keynotes + Industry Roundtables + Cross-Domain Discussions + Interactive Workshop
+          </p>
+        </div>
+      </section>
+
+      {/* 完整议程列表区域，提示文案改为英文 */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-10 text-sm text-yellow-800">
+            <strong>Agenda Note:</strong> This programme covers three core sections: trend analysis & solution design, practical pain points & real-world cases, future workforce evolution & human-AI collaboration.
+          </div>
+
+          {days.map((day) => (
+            <div key={day.label} className="mb-14">
+              <div className="flex items-center gap-4 mb-6">
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900">{day.label}</h3>
+                  <p className="text-[#2563eb] text-sm font-medium">{day.theme}</p>
+                </div>
+                <div className="flex-1 h-px bg-gray-300" />
+              </div>
+
+              <div className="space-y-2">
+                {day.sessions.map((session, i) => (
+                  <div
+                    key={i}
+                    className={`flex gap-4 p-4 rounded-lg border bg-white ${
+                      ['Break', 'Opening', 'Closing'].includes(session.type)
+                        ? 'opacity-60'
+                        : 'hover:shadow-sm transition-shadow'
+                    }`}
+                  >
+                    <div className="w-14 flex-shrink-0">
+                      <span className="text-[#2563eb] font-mono text-sm font-bold">
+                        {session.time}
+                      </span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex flex-wrap items-center gap-2 mb-1">
+                        <span
+                          className={`inline-block px-2 py-0.5 text-[11px] font-semibold rounded border ${
+                            typeColors[session.type] || 'bg-gray-100 text-gray-600 border-gray-200'
+                          }`}
+                        >
+                          {session.type}
+                        </span>
+                      </div>
+                      <p className="font-medium text-gray-900 text-sm leading-snug">
+                        {session.title}
+                      </p>
+                      {session.speaker && (
+                        <p className="text-gray-600 text-xs mt-1">
+                          {session.speaker}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
     </>
