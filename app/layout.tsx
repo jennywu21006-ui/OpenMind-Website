@@ -2,8 +2,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Navigation from '@/components/navigation';
-import Footer from '@/components/footer';
-
+// 删除Footer导入语句
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -22,7 +21,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Navigation />
         <main>{children}</main>
-        <Footer />
+        {/* 删除原来的 <Footer /> */}
       </body>
     </html>
   );
