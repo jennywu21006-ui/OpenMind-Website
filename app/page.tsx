@@ -458,13 +458,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 议程列表 */}
+      {/* 议程列表，已移除黄色Agenda Note区块 */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-10 text-sm text-yellow-800">
-            <strong>Agenda Note:</strong> This programme covers two core sections: Embodied Intelligence & Future Organization, Enterprise AI Agent Application & Business Growth.
-          </div>
-
           {days.map((day) => (
             <div key={day.label} className="mb-14">
               <div className="flex items-center gap-4 mb-6">
@@ -517,11 +513,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 独立页脚，layout已移除全局Footer，仅此处渲染 */}
+      {/* 独立页脚，layout已移除全局Footer，仅此处渲染；LinkedIn链接改为普通文本 */}
       <footer className="bg-gray-50 pt-12 pb-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* 位置1：联系信息 + LinkedIn */}
+            {/* 位置1：联系信息 + LinkedIn纯文本 */}
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <div className="flex">
@@ -541,13 +537,9 @@ export default function HomePage() {
                 <p>📞 +86 13817550309</p>
                 <p>📍 Shanghai, China</p>
               </div>
-              <div className="space-y-2 text-sm break-all">
-                <a target="_blank" href="https://www.linkedin.com/in/jenny-wu-b00299360/" className="text-blue-600 hover:underline block">
-                  Jenny Wu's Linkedin: https://www.linkedin.com/in/jenny-wu-b00299360/
-                </a>
-                <a target="_blank" href="https://www.linkedin.com/company/openmindevents.com/?viewAsMember=true" className="text-blue-600 hover:underline block">
-                  openmindevents' Linkedin: https://www.linkedin.com/company/openmindevents.com/?viewAsMember=true
-                </a>
+              <div className="space-y-2 text-sm break-all text-gray-600">
+                <p>Jenny Wu's Linkedin: https://www.linkedin.com/in/jenny-wu-b00299360/</p>
+                <p>openmindevents' Linkedin: https://www.linkedin.com/company/openmindevents.com/?viewAsMember=true</p>
               </div>
             </div>
 
