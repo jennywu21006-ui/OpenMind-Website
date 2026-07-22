@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
-// ========== 1. 调整排序后的嘉宾数据源 ==========
+// ========== 1. 调整排序后的嘉宾数据源，新增陈志超嘉宾条目 ==========
 const speakerList = [
   {
     id: "monicawang",
@@ -109,6 +109,19 @@ const speakerList = [
     speechHighlights: [],
     bio: "Partner and core algorithm expert at Shuhua Intelligent Computing. Former Algorithm Engineer at Baidu Intelligent Cloud and AI Product Manager at NetEase Fuxi Lab. National Champion of the 2026 Shenzhen Institute of Advanced Technology Winter Innovation Competition (1 out of 1,800 participants), incubated under Professor Li Zexiang’s innovation system. Algorithm consultant for Gansu Humanoid Robot Center. His expertise spans industrial intelligence and corporate digitalisation, combining algorithm R&D, AI product design and commercial delivery. He leads R&D for Shuhua Intelligent Computing’s large model data decision product line, focusing on low-cost, highly deployable AI data intelligence solutions for small and medium-sized enterprises and industrial digital transformation scenarios.",
     avatar: "/avatar/yinzijian.png"
+  },
+  // 新增陈志超嘉宾
+  {
+    id: "chenzhichao",
+    category: "Panel Guest",
+    name: "Chen Zhichao",
+    titleLine1: "Shanghai Zhiqiying Education Technology Co., Ltd.",
+    titleLine2: "CEO",
+    titleLine3: "",
+    speechTopic: "",
+    speechHighlights: [],
+    bio: "He ranked 3rd nationwide in the 2025 ASEAN AI + Cross-border E-commerce Innovation Application Competition, and received the WaytoAGI Global Hackathon AI Explorer Award as well as the Outstanding AI Potential Award of Shanghai at the 2025 China International Import Expo. He is a certified AI Agent Practitioner, senior prompt engineer trained by Alibaba DAMO Academy, and Datawhale certified engineer. He also serves as a distinguished AI enterprise implementation trainer at the 5G Integrated Application & Talent Training Laboratory, expert member of Yitang.top Academy, and expert member of Hunt Brand Hangzhou Campus.",
+    avatar: "/avatar/chenzhichao.png"
   }
 ]
 
@@ -152,7 +165,7 @@ const days = [
         time: '15:05–15:35',
         type: 'Panel',
         title: "Panel Discussion I: How AI Agents Restructure Traditional Corporate Organizations",
-        speaker: "Host: Monica Wang | Panelists: Wang Qiyuan, Hu Yingzhou, Zhao Huanhuan"
+        speaker: "Host: Zhao Huanhuan | Panelists: Wang Qiyuan, Hu Yingzhou, Chen Zhichao"
       },
       {
         time: '15:35–15:55',
@@ -182,7 +195,7 @@ const days = [
         time: '16:40–17:05',
         type: 'Panel',
         title: "Panel Discussion II: AI Agents × New Organizational Structures × New Business Growth",
-        speaker: "Host: Monica Wang | Panelists: Meng Yan, Xing Yi, Yin Zijian [Title & Affiliation Pending]"
+        speaker: "Host: Zhao Huanhuan | Panelists: Meng Yan, Xing Yi, Chen Zhichao"
       },
       {
         time: '17:05–17:15',
@@ -225,13 +238,12 @@ export default function HomePage() {
     });
   };
 
-  // 已修正后缀为png，匹配实际文件
   const scrollImageList = [
-    '/images/event1.png',
-    '/images/event2.png',
-    '/images/event3.png',
-    '/images/event4.png',
-    '/images/event5.png',
+    '/images/event1.jpg',
+    '/images/event2.jpg',
+    '/images/event3.jpg',
+    '/images/event4.jpg',
+    '/images/event5.jpg',
   ];
   const [translateX, setTranslateX] = useState(0);
   const scrollSpeed = 1;
@@ -374,7 +386,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 演讲嘉宾头部 —— 已删除副标题 */}
+      {/* 演讲嘉宾头部 */}
       <section id="speakers" className="pt-24 pb-20 bg-white relative overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
@@ -396,7 +408,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 嘉宾卡片列表：核心改动 Speaker Bio → Guest Introduction */}
+      {/* 嘉宾卡片列表 */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -442,7 +454,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 议程头部：标题已改为Agenda */}
+      {/* 议程头部 */}
       <section id="agenda" className="pt-24 pb-16 bg-white relative overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <span className="inline-block text-[#2563eb] text-xs font-semibold uppercase tracking-widest mb-4">
@@ -457,7 +469,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 议程列表，已移除黄色Agenda Note区块 */}
+      {/* 议程列表 */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           {days.map((day) => (
@@ -512,11 +524,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 独立页脚，layout已移除全局Footer，仅此处渲染；邮箱已更新 */}
+      {/* 页脚：已删除顶部简介段落、LinkedIn改为可点击超链接 */}
       <footer className="bg-gray-50 pt-12 pb-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* 位置1：联系信息 + LinkedIn纯文本 */}
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <div className="flex">
@@ -528,21 +539,37 @@ export default function HomePage() {
                   <p className="text-xs text-gray-500">BY JR GROUP</p>
                 </div>
               </div>
-              <p className="text-gray-600 text-sm mb-3">
-                OpenMind Events convenes focused forums for business leaders navigating AI, talent, and organizational transformation.
-              </p>
               <div className="space-y-2 text-sm text-gray-600 mb-3">
                 <p>📩 jenny.wu@openmindevents.com</p>
                 <p>📞 +86 13817550309</p>
                 <p>📍 Shanghai, China</p>
               </div>
               <div className="space-y-2 text-sm break-all text-gray-600">
-                <p>Jenny Wu's Linkedin: https://www.linkedin.com/in/jenny-wu-b00299360/</p>
-                <p>openmindevents' Linkedin: https://www.linkedin.com/company/openmindevents.com/?viewAsMember=true</p>
+                <p>
+                  Jenny Wu's Linkedin: 
+                  <a 
+                    href="https://www.linkedin.com/in/jenny-wu-b00299360/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline"
+                  >
+                    https://www.linkedin.com/in/jenny-wu-b00299360/
+                  </a>
+                </p>
+                <p>
+                  openmindevents' Linkedin: 
+                  <a 
+                    href="https://www.linkedin.com/company/openmindevents.com/?viewAsMember=true" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline"
+                  >
+                    https://www.linkedin.com/company/openmindevents.com/?viewAsMember=true
+                  </a>
+                </p>
               </div>
             </div>
 
-            {/* 位置2：报名二维码 */}
             <div className="flex flex-col items-center">
               <h4 className="font-medium mb-3">THE FORUM</h4>
               <p className="text-sm text-gray-600 mb-3">Scan QR to Register</p>
@@ -558,7 +585,6 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* 位置3：Jenny Wu联系微信二维码 */}
             <div className="flex flex-col items-center">
               <h4 className="font-medium mb-3">RESOURCES</h4>
               <p className="text-sm text-gray-600 mb-3">Contact Jenny Wu</p>
