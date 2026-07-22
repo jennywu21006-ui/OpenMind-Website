@@ -225,13 +225,13 @@ export default function HomePage() {
     });
   };
 
-  // 滚动图片逻辑
+  // 已修正后缀为png，匹配实际文件
   const scrollImageList = [
-    '/images/event1.jpg',
-    '/images/event2.jpg',
-    '/images/event3.jpg',
-    '/images/event4.jpg',
-    '/images/event5.jpg',
+    '/images/event1.png',
+    '/images/event2.png',
+    '/images/event3.png',
+    '/images/event4.png',
+    '/images/event5.png',
   ];
   const [translateX, setTranslateX] = useState(0);
   const scrollSpeed = 1;
@@ -432,7 +432,6 @@ export default function HomePage() {
                       </>
                     )}
 
-                    {/* 此处完成文字替换 */}
                     <h4 className="text-lg font-semibold mt-4 text-gray-800">Guest Introduction</h4>
                     <p className="text-sm text-gray-600 mt-1 leading-relaxed">{speaker.bio}</p>
                   </div>
@@ -513,7 +512,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 独立页脚，layout已移除全局Footer，仅此处渲染；LinkedIn链接改为普通文本 */}
+      {/* 独立页脚，layout已移除全局Footer，仅此处渲染；邮箱已更新 */}
       <footer className="bg-gray-50 pt-12 pb-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -533,7 +532,7 @@ export default function HomePage() {
                 OpenMind Events convenes focused forums for business leaders navigating AI, talent, and organizational transformation.
               </p>
               <div className="space-y-2 text-sm text-gray-600 mb-3">
-                <p>📩 contact@openmindexvents.com</p>
+                <p>📩 jenny.wu@openmindevents.com</p>
                 <p>📞 +86 13817550309</p>
                 <p>📍 Shanghai, China</p>
               </div>
