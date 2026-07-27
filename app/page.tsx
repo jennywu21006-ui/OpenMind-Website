@@ -224,7 +224,7 @@ const typeColors: Record<string, string> = {
   Break: 'bg-gray-50 text-gray-600 border-gray-200',
   Opening: 'bg-gray-50 text-gray-600 border-gray-200',
   Close: 'bg-gray-50 text-gray-700 border-gray-200',
-  Closing: 'bg-gray-50 text-gray-700 border-gray-200',
+  Closing: 'bg-gray-50 text-gray-600 border-gray-200',
 };
 
 export default function HomePage() {
@@ -347,6 +347,29 @@ export default function HomePage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* 新增本地论坛视频板块，使用你提供的会议图作为视频封面 */}
+      <section className="bg-[#0f172a] py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-white mb-2 text-center">Forum Highlights</h2>
+          <p className="text-gray-400 text-center mb-10">Innovation · Connection · Win-Win | OpenMind Events by JR Group</p>
+          
+          <div className="w-full max-w-5xl mx-auto rounded-xl overflow-hidden shadow-2xl">
+            <video
+              src="/videos/forum-highlight.mp4"
+              poster="/images/video-poster.jpg"
+              controls
+              muted
+              loop
+              playsInline
+              className="w-full h-auto block"
+            />
+          </div>
+          <p className="text-gray-300 text-center mt-5 text-sm">
+            Past conference real scene recording | OpenMind AI Workforce Transformation Forum
+          </p>
         </div>
       </section>
 
