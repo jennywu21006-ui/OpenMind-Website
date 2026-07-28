@@ -1,8 +1,9 @@
 'use client';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
-// ========== 1. 调整排序后的嘉宾数据源，新增陈志超嘉宾条目 ==========
+// ========== 1. AI论坛嘉宾数据源（路径复数 avatars/ai-forum） ==========
 const speakerList = [
   {
     id: "monicawang",
@@ -14,7 +15,7 @@ const speakerList = [
     speechTopic: "",
     speechHighlights: [],
     bio: "Global expansion advisor for multiple top corporations, with hundreds of millions of cross-lingual video views and weekly live streams covering global expansion, AI and entrepreneurship. Founder of AGI Villa (3,000+ AI entrepreneurs) and BridgingChina (200K followers). A former journalist who has visited 60 countries over 15 years, she is an in-depth observer and connector of tech globalisation. Serial entrepreneur, former CEO/CMO of unicorns in AI coding, youth education, Web3, local life services and social e-commerce; her startups have raised over 1.5 billion RMB from Sequoia China, Linear Capital, Junlian Capital, Innovation Works and other institutions. Mother of three, marathon runner.",
-    avatar: "/avatar/monicawang.png"
+    avatar: "/avatars/ai-forum/monicawang.png"
   },
   {
     id: "wangqiyuan",
@@ -31,7 +32,7 @@ const speakerList = [
       "Challenges and takeaways from AI-powered organisational transformation"
     ],
     bio: "Partner, Tax & Business Consulting, PwC China, with more than 17 years of tax and business consulting experience focusing on Chinese enterprises’ global expansion and multinationals’ operations in China. He has led cross-border tax, M&A restructuring and corporate strategy consulting projects for well-known organisations including Fosun, Alibaba, Xiaomi and Sequoia Capital. He brings profound hands-on experience in corporate digital transformation, cross-border investment and organisational restructuring in the AI era.",
-    avatar: "/avatar/wangqiyuan.png"
+    avatar: "/avatars/ai-forum/wangqiyuan.png"
   },
   {
     id: "huyingzhou",
@@ -47,8 +48,8 @@ const speakerList = [
       "How investment institutions evaluate embodied intelligence startups",
       "Standardisation strategies for global expansion and collaborative overseas market entry"
     ],
-    bio: "Master’s degree from Shanghai University of Finance and Economics. He specialises in building industrial ecosystems for embodied intelligence, commercialisation and industrial investment & financing. He maintains deep connections with robot OEMs, core component suppliers and AI algorithm firms, having participated in over 50 commercial projects and capital matching initiatives. He created the “One-Page Due Diligence Model for Embodied Intelligence” and built the S&D Intelligent Matching Engine to empower the globalisation of Chinese embodied intelligence industrial chains through standardisation.",
-    avatar: "/avatar/huyingzhou.png"
+    bio: "Master’s degree from Shanghai University of Finance and Economics. He specialises in building industrial ecosystems for embodied intelligence, commercialisation and industrial investment & financing. He maintains deep connections with robot OEMs, core component suppliers and AI algorithm firms, having participated in over 50 commercial projects and capital matching initiatives. He created the “One-Page Due Diligence Model for Embodied Intelligence” and built the S&D Intelligent Matching Engine to empower the globalisation of Chinese embodied intelligence industrial chains.",
+    avatar: "/avatars/ai-forum/huyingzhou.png"
   },
   {
     id: "zhaohuanhuan",
@@ -65,7 +66,7 @@ const speakerList = [
       "Strategies for enterprises to manage talent transition and organizational reform in the AI robotics era"
     ],
     bio: "Master of Artificial Intelligence, The University of Hong Kong. She has 16 years of cross-industry management experience across domestic and international markets, dedicated to designing AI robotics transformation pathways for traditional industry professionals. She consistently drives deep integration of AI, robotics technology and industrial applications, with extensive practical experience in AI talent development, industrial transformation and commercialization of embodied intelligence.",
-    avatar: "/avatar/zhaohuanhuan.png"
+    avatar: "/avatars/ai-forum/zhaohuanhuan.png"
   },
   {
     id: "mengyan",
@@ -80,7 +81,7 @@ const speakerList = [
       "Enterprise intelligent applications and efficiency-boosting use cases"
     ],
     bio: "Specialised in commercial deployment of AI technology. Former technical lecturer for iFLYTEK Open Platform, proficient in Spark large model and voice AI enterprise integration solutions. He has delivered AI project rollouts for top enterprises including Meitu, Didi and Inspur, covering digital transformation scenarios across government and private industries. He possesses end-to-end practical expertise spanning technical integration, solution design and business delivery. Focused on large model industrial commercialisation, he delivers lightweight, high-value AI implementation solutions tailored for physical enterprises.",
-    avatar: "/avatar/mengyan.png"
+    avatar: "/avatars/ai-forum/mengyan.png"
   },
   {
     id: "xingyi",
@@ -96,7 +97,7 @@ const speakerList = [
       "Pushing intelligent agents toward verifiability, authorisation, rollback functionality and continuous iterative learning"
     ],
     bio: "His research covers multi-agent simulation, complex adaptive systems and product design for corporate decision intelligence. He leads the overall architecture of Ripple, simulating interactions between market participants, organisations and social actors within virtual environments. He advances large models, multi-agent systems and reinforcement learning toward enterprise decision systems with defined evidence boundaries, real-world feedback loops and governance frameworks.",
-    avatar: "/avatar/xingyi.png"
+    avatar: "/avatars/ai-forum/xingyi.png"
   },
   {
     id: "yinzijian",
@@ -108,9 +109,8 @@ const speakerList = [
     speechTopic: "",
     speechHighlights: [],
     bio: "Partner and core algorithm expert at Shuhua Intelligent Computing. Former Algorithm Engineer at Baidu Intelligent Cloud and AI Product Manager at NetEase Fuxi Lab. National Champion of the 2026 Shenzhen Institute of Advanced Technology Winter Innovation Competition (1 out of 1,800 participants), incubated under Professor Li Zexiang’s innovation system. Algorithm consultant for Gansu Humanoid Robot Center. His expertise spans industrial intelligence and corporate digitalisation, combining algorithm R&D, AI product design and commercial delivery. He leads R&D for Shuhua Intelligent Computing’s large model data decision product line, focusing on low-cost, highly deployable AI data intelligence solutions for small and medium-sized enterprises and industrial digital transformation scenarios.",
-    avatar: "/avatar/yinzijian.png"
+    avatar: "/avatars/ai-forum/yinzijian.png"
   },
-  // 新增陈志超嘉宾
   {
     id: "chenzhichao",
     category: "Panel Guest",
@@ -121,11 +121,11 @@ const speakerList = [
     speechTopic: "",
     speechHighlights: [],
     bio: "He ranked 3rd nationwide in the 2025 ASEAN AI + Cross-border E-commerce Innovation Application Competition, and received the WaytoAGI Global Hackathon AI Explorer Award as well as the Outstanding AI Potential Award of Shanghai at the 2025 China International Import Expo. He is a certified AI Agent Practitioner, senior prompt engineer trained by Alibaba DAMO Academy, and Datawhale certified engineer. He also serves as a distinguished AI enterprise implementation trainer at the 5G Integrated Application & Talent Training Laboratory, expert member of Yitang.top Academy, and expert member of Hunt Brand Hangzhou Campus.",
-    avatar: "/avatar/chenzhichao.png"
+    avatar: "/avatars/ai-forum/chenzhichao.png"
   }
 ]
 
-// ========== 2. 全英文议程 ==========
+// 全英文议程
 const days = [
   {
     label: 'Agenda',
@@ -171,18 +171,18 @@ const days = [
         time: '15:35–15:55',
         type: 'Break',
         title: "Coffee Break & Free Networking",
-        speaker: "Light refreshments and business communication for all guests."
+        speaker: "Light refreshments and free communication for all guests."
       },
       {
         time: '15:55–16:00',
         type: 'Opening',
-        title: "Audience Re-entry",
+        title: 'Audience Re-entry',
         speaker: "Host reminds attendees to take seats for the second session."
       },
       {
         time: '16:00–16:20',
         type: 'Keynote',
-        title: "Keynote Speech: Enterprise-Grade LLM Application Scenarios & Implementation Cases",
+        title: "Keynote Speech: Enterprise-Grade Application Scenarios & Deployment Cases Powered by Large Language Models",
         speaker: "Speaker: Meng Yan | Business Development Manager, iFLYTEK, Senior Technical Consultant for Government & Enterprise AI Implementation"
       },
       {
@@ -223,7 +223,7 @@ const typeColors: Record<string, string> = {
   Registration: 'bg-gray-50 text-gray-600 border-gray-200',
   Break: 'bg-gray-50 text-gray-600 border-gray-200',
   Opening: 'bg-gray-50 text-gray-600 border-gray-200',
-  Close: 'bg-gray-50 text-gray-700 border-gray-200',
+  Close: 'bg-gray-50 text-gray-600 border-gray-200',
   Closing: 'bg-gray-50 text-gray-600 border-gray-200',
 };
 
@@ -316,7 +316,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* About the Summit 左右分栏：左侧文字，右侧png现场图 */}
+        {/* About the Summit 左右分栏 */}
         <div className="bg-white py-16 sm:py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
@@ -350,7 +350,54 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 新增本地论坛视频板块，使用你提供的会议图作为视频封面 */}
+      {/* Past Overseas Event Preview（新增西班牙活动，双栏布局，图片占位） */}
+      <section className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">Past Overseas Event Preview</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            {/* 中东阿曼COMEX活动 */}
+            <Link
+              href="/middle-east-forum"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-fit"
+            >
+              <div className="w-[380px] h-[240px] rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all group">
+                <Image
+                  src="/images/middle-east-cover.jpg"
+                  alt="聚焦中东 COMEX中国区发布会"
+                  width={380}
+                  height={240}
+                  unoptimized
+                  className="w-full h-full object-cover group-hover:scale-105 duration-300"
+                />
+              </div>
+              <p className="mt-3 text-gray-700 font-medium">点击查看「2025中东阿曼COMEX出海发布会」完整详情</p>
+            </Link>
+            {/* 西班牙跨境出海活动（图片预留空白） */}
+            <Link
+              href="/spain-forum"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-fit"
+            >
+              <div className="w-[380px] h-[240px] rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all group bg-slate-100">
+                <Image
+                  src="/images/spain-event-cover.jpg"
+                  alt="新模式跨境出海·中国西班牙合作专场"
+                  width={380}
+                  height={240}
+                  unoptimized
+                  className="w-full h-full object-cover group-hover:scale-105 duration-300"
+                />
+              </div>
+              <p className="mt-3 text-gray-700 font-medium">点击查看「2025西班牙跨境出海专场」完整详情</p>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 论坛视频板块 */}
       <section className="bg-[#0f172a] py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-white mb-2 text-center">Forum Highlights</h2>
@@ -373,7 +420,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 滚动图片模块 */}
+      {/* 横向滚动图片 */}
       <section className="w-full overflow-hidden py-10 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
           <h2 className="text-2xl font-bold text-gray-900">Previous Events Highlights</h2>
@@ -438,7 +485,7 @@ export default function HomePage() {
             {speakerList.map((speaker) => (
               <div key={speaker.id} className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-shadow">
                 <div className="flex flex-col md:flex-row gap-6">
-                  <div className="w-44 h-44 shrink-0 mx-auto md:mx-0 rounded-full overflow-hidden border-4 border-blue-100 relative">
+                  <div className="w-40 h-40 shrink-0 mx-auto md:mx-0 rounded-full overflow-hidden border-4 border-blue-100 relative">
                     <Image
                       src={speaker.avatar}
                       alt={speaker.name}
@@ -547,7 +594,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 页脚：已删除顶部简介段落、LinkedIn改为可点击超链接 */}
+      {/* 页脚 */}
       <footer className="bg-gray-50 pt-12 pb-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -609,8 +656,8 @@ export default function HomePage() {
             </div>
 
             <div className="flex flex-col items-center">
-              <h4 className="font-medium mb-3">RESOURCES</h4>
-              <p className="text-sm text-gray-600 mb-3">Contact Jenny Wu</p>
+              <h4 className="font-semibold mb-3">RESOURCES</h4>
+              <p className="text-gray-600 mb-3 text-sm">Contact Jenny Wu</p>
               <div className="w-48 h-48 bg-white p-2 rounded-lg shadow">
                 <Image
                   src="/images/qr-jenny-wu.png"
