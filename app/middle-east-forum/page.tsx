@@ -1,5 +1,6 @@
 'use client';
 import Image from 'next/image';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 // 12位中东嘉宾数据源，头像路径补齐middle-east子文件夹
 const meSpeakerList = [
@@ -117,7 +118,42 @@ const agendaList = [
   { time: "16:50 - 17:20", type: "Panel Session II", content: "Belt & Road 2.0 Era: How the Middle East Becomes a Critical Springboard for Chinese Globalization\nModerator: Robin Du\nPanelists: Liu Kai, Liu Di, Jacob" },
 ];
 
+// =================中东论坛Highlights照片数组，自行修改图片路径=================
+const meHighlightImages = [
+  "/images/middle-east/h1.jpg",
+  "/images/middle-east/h2.jpg",
+  "/images/middle-east/h3.jpg",
+  "/images/middle-east/h4.jpg",
+  "/images/middle-east/h5.jpg",
+];
+
 export default function MiddleEastForumPage() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isHover, setIsHover] = useState(false);
+  const scrollStep = 1;
+  const intervalTime = 20;
+  const loopImages = [...meHighlightImages, ...meHighlightImages];
+
+  const autoScroll = useCallback(() => {
+    const scrollBox = scrollRef.current;
+    if (!scrollBox) return;
+    if (isHover) return;
+
+    if (scrollBox.scrollLeft >= scrollBox.scrollWidth / 2) {
+      scrollBox.scrollLeft -= scrollBox.scrollWidth / 2;
+    } else {
+      scrollBox.scrollLeft += scrollStep;
+    }
+  }, [isHover]);
+
+  useEffect(() => {
+    const scrollBox = scrollRef.current;
+    if (!scrollBox) return;
+    scrollBox.scrollLeft = 0;
+    const timer = setInterval(autoScroll, intervalTime);
+    return () => clearInterval(timer);
+  }, [autoScroll]);
+
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* 头部Banner */}
@@ -157,13 +193,12 @@ export default function MiddleEastForumPage() {
           </ul>
         </section>
 
-        {/* 演讲嘉宾区块（和截图布局完全匹配） */}
+        {/* 演讲嘉宾区块 */}
         <section className="mb-20">
           <h2 className="text-2xl font-bold text-gray-900 mb-8 border-l-4 border-blue-600 pl-3">Featured Speakers</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {meSpeakerList.map(item => (
               <div key={item.id} className="bg-white rounded-xl shadow p-6 flex flex-col md:flex-row gap-6">
-                {/* 头像容器，保留圆形空白外圈样式 */}
                 <div className="w-40 h-40 shrink-0 rounded-full overflow-hidden border border-blue-100 relative mx-auto md:mx-0">
                   <Image
                     src={item.avatar}
@@ -205,6 +240,34 @@ export default function MiddleEastForumPage() {
             ))}
           </div>
         </section>
+
+        {/* ==========新增Highlights无限横向滚动画廊（与首页样式完全一致）========== */}
+        <section className="mb-20">
+          <h2 className="text-2xl font-bold text-gray-900 mb-10 border-l-4 border-blue-600 pl-3">Highlights</h2>
+          <div
+            ref={scrollRef}
+            className="flex gap-4 overflow-x-hidden pb-4"
+            onMouseEnter={() => setIsHover(true)}
+            onMouseLeave={() => setIsHover(false)}
+          >
+            {loopImages.map((imgUrl, idx) => (
+              <div key={idx} className="min-w-[320px] h-[200px] rounded-lg overflow-hidden shadow-sm relative flex-shrink-0">
+                <Image
+                  src={imgUrl}
+                  alt={`Event highlight ${(idx % meHighlightImages.length)+1}`}
+                  fill
+                  sizes="320px"
+                  className="object-cover"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.opacity = "0.3";
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+        </section>
+        {/* ===================================================================== */}
 
         {/* 活动信息板块 */}
         <section className="bg-white p-8 rounded-xl shadow mb-12">
